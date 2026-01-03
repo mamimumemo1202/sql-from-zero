@@ -2,8 +2,21 @@
 
 第2章：
 DISTINCTはSELECTしたカラムが完全一致の場合に重複扱いして除く。
+WHEREは先にWHEREで条件が合うものを探して、SELECTで出力してる
+WHERE句に指定したカラムは必ずしもSELECTで出力しなくていい
+SELECT -> FROM -> WHEREの順(WHEREはFROMのすぐ後ろ)
+NULLが含む計算は問答無用でNULL（5 + NULLみたいな値が欲しいときもあるけど、それは後述）
+否定の演算子は<>(!=でもいけるけど標準的なのは<>)
+str数字は辞書順に大小
+NULLはIS NULLで検証する（IS NOT NULL NULLでないもの）
+AND演算子のほうが優先されるためORを優先するときは（）をつける
+ANDはUNKNOWとFALSEのときはFALSEが、ORはUNKNOWNとFALSEの時はUNKNOWN（ここは今後要注意）
+
 
 第3章：
+
+COUNTの引数に指定したカラムはNULLを除外した数を出力、＊するとNULLを含む行数を出力
+
 
 第4章：
 
