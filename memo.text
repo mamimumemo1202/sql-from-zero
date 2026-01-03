@@ -16,7 +16,11 @@ ANDはUNKNOWとFALSEのときはFALSEが、ORはUNKNOWNとFALSEの時はUNKNOWN�
 第3章：
 
 COUNTの引数に指定したカラムはNULLを除外した数を出力、＊するとNULLを含む行数を出力
-
+AVGもNULLを除外して計算するけど、分母もNULLがなくなった分になる（０としてカウントする場合は後述）
+現時点ではSELECT -> FROM -> WHERE -> GROUP BYの順（でも、動く順番はFROM -> WHERE -> GROUP BY -> SELECT）
+WHEREはレコードの絞り込みにしか使えない、GROUP BYした後の条件を付ける場合はHAVINGを使う
+HAVINGを使うときはGROUP BYでできた新しいテーブルに対してさらに条件を付けるってイメージするとよき
+その句が先に動いて後に動くかを考える
 
 第4章：
 
