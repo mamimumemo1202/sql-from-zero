@@ -1,0 +1,1 @@
+ALTER TABLE address_book ADD COLUMN postal_code CHAR(8) NOT NULL;
