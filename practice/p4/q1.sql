@@ -1,0 +1,1 @@
+-- TRANSACTION前の結果、独立性

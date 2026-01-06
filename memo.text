@@ -23,6 +23,21 @@ HAVINGを使うときはGROUP BYでできた新しいテーブルに対してさ
 その句が先に動いて後に動くかを考える
 
 第4章：
+INSERT SELECTでテーブルのコピーができ、GROUP BYも使える
+DELETE FROM TableName
+DELETEはWHEREしか使えない（まあ当たり前ではある）
+全レコード削除の際はTRUNCATEもある（DELETEより軽いけど使用注意）
+DBに接続し最初のSQLを発行した時点でTRANSACTIONが開始されている
+
+ACID特性
+    原子性：TRANSACTION内のDMLはすべてCOMMITかすべてROLLBACKのみ
+    一貫性：テーブルのルールに従っている
+    独立性：COMMIT前のDMLは外からの影響を受けない、与えない
+    永続性：TRANSACTIONが終了した時点でデータの状態が保存されていること
+VALUEは手入力の値
+    INSERT INTO TableName (name, price) VALUES ('リンゴ', 100)
+SELECTはレコードを持ってくる
+
 
 第5章：
 
