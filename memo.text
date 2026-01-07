@@ -58,6 +58,21 @@ Viewに対して更新は原則できない
 
 
 第6章：
+ROUND(対象数, 四捨五入して最終的に小数点何位まで求めるかの値)
+LNGTHで文字列を数えられるが、文字数を数える場合もあれば、バイト数を数える場合もある
+REPLACE(対象文字列, 置換前の文字列, 置換後の文字列)
+SUBSTRING(対象文字列 FROM 切り出し開始文字数目 FOR 切り出し文字数)
+日時関数はDBMSによって差がある
+CURRENT_TIMESTAMPはCURRENT_DATE + CURRENT_TIME
+COALESCEは引数を左から検証して最初にNULLじゃない値を出力。すべてNULLならNULL
+    例えば、集計や計算でNULLを0として計算したいときに
+    SELECT COALESCE(price, 0) AS price FROM Product
+
+述語は戻り値が真になるものを出力するもの
+LIKE は一致があるかどうか '%abc' = 前方一致があるか　'_abc' = 前方一致があるか（Underscoreの数は文字数）
+BETWEEN は範囲検索 Between 100 AND 1000 は両端を含む。含ませたくない場合は WHERE something > 100 AND something < 1000 ; 
+IN (100, 200, 300) は WHERE something = 100 OR something = 200 OR something = 300 ; OR句を簡単に書ける
+NOT INで除外も可 
 
 第7章：
 
