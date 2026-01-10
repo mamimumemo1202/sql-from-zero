@@ -109,5 +109,38 @@ ORDER BY tenpo_id;
 CROSS JOINは両テーブルを掛け合わせたもの
 
 第8章：
+ウィンドウ関数
+SELECT　列名, RANK () OVER (PARTITION BY 列名 ORDER BY ソートする列名)
+PARTITION BY 列名　は列名ごとにカットするイメージ。カットしてそれぞれの列名で ORDER BYに沿って順位付けする
 
-第9章：
+RANK: 1,1,1,4
+DENSE_RANK: 1,1,1,2
+ROW_NUMBER: 1,2,3,4
+
+ウィンドウ関数はSELECTでしか使えない（これも表示用にソートするものだから、途中でソートする必要ないから、WHEREとかにかけない）
+集約関数はウィンドウ関数として書くことが可能
+ROWS 数字 PRECEDING: ウィンドウごとに切られたレコードの集まりのなかでさらに細かく分ける
+    ROWS 2 PRECEDINGだったら、カレントレコード、その1行前、2行前が選択されている
+    ROWS 2 FOLLWOINGだったら、カレントレコード、その1行後、2行後が選択されている
+
+前後の比較をするときに便利だね
+
+ROLLUPはGROUP BYに引数につける。
+    GROUP BY ROLLUP(shohin_bunrui)は内部的には
+    1. GROUP BY ()
+    2. GROUP BY (shohin_bunrui)
+    で処理される。＝合計（１）と商品分類ごとの小計（２）が求められる
+    （すこしむずい）
+
+GROUPING: 引数に取った列の値が超集合行のために生じたNULLなら１を返し、それ以外は０を返す
+１の時には'合計'みたいな文言を入れられるけど、そのときにはデータの型に注意
+
+CUBEはROLLUPに加えて、引数のすべての組み合わせで出力する
+    ROUP BY ROLLUP(shohin_bunrui, torokubi)は内部的には
+    1. GROUP BY ()
+    2. GROUP BY (shohin_bunrui)
+    3. GROUP BY (torokubi)
+    4. GROUP BY (shohin_bunrui, torokubi)
+    で処理される。
+
+GROUPING SETS: 引数に取った集約キーのみで集約したいとき（？）
