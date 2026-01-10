@@ -75,6 +75,38 @@ IN (100, 200, 300) は WHERE something = 100 OR something = 200 OR something = 3
 NOT INで除外も可 
 
 第7章：
+行方向に作用するものと列方向に作用するものがある
+UNIONはレコードを足す。通常、重複レコードは排除される
+注意点：
+    カラム数は同じである
+    データ型が同じである
+    ORDER BYは最後につける（結局途中でつけても最終出力に対してORDER BYするから途中にあっても意味ない）
+
+UNION ALLで重複を含む
+INTERSECTは両テーブルの共通部分を表示する（ベン図でいう重なっているところ）
+INTERSECT ALLで重複を表示
+
+EXCEPTはテーブルの引き算のイメージ
+引き算なのでどちらを引くテーブルにするかで結果が変わる
+
+列方向の結合（JOIN）
+例：（INNER JOIN）
+SELECT TS.tenpo_id, TS.tenpo_mei, TS.shohin_id, S.shohin_mei, S.hanbai_tanka
+  FROM TenpoShohin AS TS INNER JOIN Shohin AS S
+    ON TS.shohin_id = S.shohin_id
+ORDER BY tenpo_id;
+
+例：（OUTER JOIN）
+SELECT TS.tenpo_id, TS.tenpo_mei, S.shohin_id, S.shohin_mei, S.hanbai_tanka
+  FROM TenpoShohin TS RIGHT OUTER JOIN Shohin S
+    ON TS.shohin_id = S.shohin_id
+ORDER BY tenpo_id;
+
+内部結合：ON TS.shohin_id = S.shohin_idをしたときに、ないものは表示されない（この場合はどこの店舗でも扱ってないもの）
+外部結合：ON TS.shohin_id = S.shohin_idしてもお互いにすべてのレコードを合体させて、ない分はNULL（本当に外部からのデータをくっつけるイメージ）
+        RIGHT, LEFTはそれぞれ右、左にあるテーブルをマスタにする。
+
+CROSS JOINは両テーブルを掛け合わせたもの
 
 第8章：
 
