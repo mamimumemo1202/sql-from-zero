@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes: 
+      - pgdata:/var/lib/postgresql
+      - ./sql:/sql
+      - ./practice:/practice
+
+  ruby:
+    build:
+      context: ruby/
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
